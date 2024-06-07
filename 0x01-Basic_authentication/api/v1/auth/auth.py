@@ -5,10 +5,13 @@ from typing import List, TypeVar
 import requests
 User = TypeVar('User')
 
+
 class Auth:
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
-        """This method is a placeholder for future implementation of access control
-        based on path and excluded paths. For now, it always returns False.
+        """This method is a placeholder for future
+        implementation of access control
+        based on path and excluded paths. For now,
+        it always returns False.
         """
         if path | excluded_paths is None:
             return True
