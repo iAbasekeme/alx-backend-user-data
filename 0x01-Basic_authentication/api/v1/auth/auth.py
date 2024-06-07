@@ -7,6 +7,8 @@ User = TypeVar('User')
 
 
 class Auth:
+    """A class that performs a simple authentication
+    """
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """This method is a placeholder for future
         implementation of access control
