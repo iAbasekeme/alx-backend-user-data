@@ -30,3 +30,10 @@ def unauthorized() -> int:
   """
   return abort(401)
   this_is_never_executed()
+
+@app_views.route('/forbidden/', strict_slashes=False)
+def forbidden()-> int:
+  """A route that implements forbodden error
+  """
+  return abort(403)
+  this_is_never_executed()
