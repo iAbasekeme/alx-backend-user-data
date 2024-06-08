@@ -75,12 +75,8 @@ class BasicAuth(Auth):
         if user_pwd is None:
             return None
         users = User.search(email=user_email)
-
-        # Check if a user is found
         if not users:
             return None
-
-        # Validate password against the first matching user (assuming unique emails)
         for user in users:
             if user.is_valid_password(user_pwd):
                 return user
