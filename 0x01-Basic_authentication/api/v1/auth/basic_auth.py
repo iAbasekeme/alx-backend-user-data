@@ -5,6 +5,7 @@ from api.v1.auth.auth import Auth
 import base64
 import binascii
 
+
 class BasicAuth(Auth):
     """Basic authentication class
     """
@@ -27,7 +28,6 @@ class BasicAuth(Auth):
 
         # Extract the Base64 part after skipping "Basic "
         return authorization_header[6:].strip()
-
 
     def decode_base64_authorization_header(
             self,
