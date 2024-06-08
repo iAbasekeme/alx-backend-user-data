@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
+"""Route module for the API.
 """
-Route module for the API
-"""
+import os
 from os import getenv
-from api.v1.views import app_views
 from flask import Flask, jsonify, abort, request
 from flask_cors import (CORS, cross_origin)
-import os
+
+from api.v1.views import app_views
 from api.v1.auth.auth import Auth
 
 
@@ -18,41 +18,39 @@ auth_type = getenv('AUTH_TYPE', 'auth')
 if auth_type == 'auth':
     auth = Auth()
 
-@app.errorhandler(401)
-def abort(error) -> str:
-    """unauthorized handler
-    """
-    return jsonify({"error": "Unauthorized"}), 401
-
 
 @app.errorhandler(404)
 def not_found(error) -> str:
-    """ Not found handler
+    """Not found handler.
     """
     return jsonify({"error": "Not found"}), 404
 
 
+@app.errorhandler(401)
+def unauthorized(error) -> str:
+    """Unauthorized handler.
+    """
+    return jsonify({"error": "Unauthorized"}), 401
+
+
 @app.errorhandler(403)
 def forbidden(error) -> str:
-    """A forbidden handler
+    """Forbidden handler.
     """
-    return jsonify({
-        "error": "Forbidden"
-    }), 403
+    return jsonify({"error": "Forbidden"}), 403
 
 
 @app.before_request
-def filter():
-    """ A method that handles filtering the
-    url before it's been accesssed
+def authenticate_user():
+    """Authenticates a user before processing a request.
     """
     if auth:
-        paths = [
+        excluded_paths = [
             '/api/v1/status/',
             '/api/v1/unauthorized/',
             '/api/v1/forbidden/',
         ]
-        if auth.require_auth(request.path, paths):
+        if auth.require_auth(request.path, excluded_paths):
             auth_header = auth.authorization_header(request)
             user = auth.current_user(request)
             if auth_header is None:

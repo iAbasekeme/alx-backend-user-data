@@ -27,14 +27,14 @@ def stats() -> str:
 
 
 @app_views.route('/unauthorized/', strict_slashes=False)
-def unauthorized() -> int:
+def unauthorized() -> None:
     """Abort when unauthorized error pops up
     """
     return abort(401)
 
 
 @app_views.route('/forbidden/', strict_slashes=False)
-def forbidden() -> int:
+def forbidden() -> None:
     """A route that implements forbodden error
     """
     return abort(403)
