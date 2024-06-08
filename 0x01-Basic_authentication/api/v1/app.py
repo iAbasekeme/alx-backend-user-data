@@ -40,6 +40,7 @@ def forbidden(error) -> str:
         "error": "Forbidden"
     }), 403
 
+
 @app.before_request
 def filter():
     """ A method that handles filtering the
@@ -57,6 +58,7 @@ def filter():
             abort(401)
         if user is None:
             abort(403)
+
 
 if __name__ == "__main__":
     host = getenv("API_HOST", "0.0.0.0")
