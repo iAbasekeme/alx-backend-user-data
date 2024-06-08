@@ -77,13 +77,13 @@ class BasicAuth(Auth):
 
         """Retrieves a user based on the user's authentication credentials.
         """
-        if not isinstance(user_email, str) or user_email is None:
-            return None
-        if not isinstance(user_pwd, str) or user_pwd is None:
-            return None
-        user = User.search(email=user_email)
-        if not user:
-            return None
-        if not user.is_valid_password(user_pwd):
-            return None
-        return user
+        if type(user_email) == str and type(user_pwd) == str:
+            try:
+                users = User.search({'email': user_email})
+            except Exception:
+                return None
+            if len(users) <= 0:
+                return None
+            if users[0].is_valid_password(user_pwd):
+                return users[0]
+        return None
