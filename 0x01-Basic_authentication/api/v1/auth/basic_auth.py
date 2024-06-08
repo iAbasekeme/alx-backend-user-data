@@ -8,6 +8,7 @@ from typing import TypeVar
 from .auth import Auth
 from models.user import User
 
+
 class BasicAuth(Auth):
     """Basic authentication class that inherits from the Auth class
     """
@@ -76,9 +77,13 @@ class BasicAuth(Auth):
 
         """Retrieves a user based on the user's authentication credentials.
         """
-        if user_email is None or not isinstance(user_email, str):
+        if user_email is None:
             return None
-        if user_pwd is None or not isinstance(user_pwd, str):
+        if not isinstance(user_email, str):
+            return None
+        if user_pwd is None:
+            return None
+        if not isinstance(user_pwd, str):
             return None
         users = User.search(email=user_email)
         if not users:
