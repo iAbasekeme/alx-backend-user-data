@@ -2,7 +2,6 @@
 """A class for managing the API authentication
 """
 from typing import List, TypeVar
-import requests
 User = TypeVar('User')
 
 
@@ -36,7 +35,7 @@ class Auth:
         if provided. Otherwise, it returns None.
         """
         if request is not None:
-            return requests.headers.get('Authorization', None)
+            return request.headers.get('Authorization', None)
         return None
 
     def current_user(self, request=None) -> User:
