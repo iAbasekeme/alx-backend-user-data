@@ -37,7 +37,9 @@ class Auth:
         return None
 
     def current_user(self, request=None) -> User:
-        """This method is a placeholder for future implementation of user retrieval
-        based on the authorization header. For now, it always returns None.
+        """This method is a placeholder for
+        future implementation of user retrieval
+        based on the authorization header. For now,
+        it always returns None.
         """
         return None
