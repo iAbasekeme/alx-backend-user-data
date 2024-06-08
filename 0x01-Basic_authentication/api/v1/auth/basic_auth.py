@@ -37,7 +37,7 @@ class BasicAuth(Auth):
         if not isinstance(base64_authorization_header, str):
             return None
         try:
-            res =  base64.b64decode(
+            res = base64.b64decode(
                 base64_authorization_header,
                 validate=True
             )
