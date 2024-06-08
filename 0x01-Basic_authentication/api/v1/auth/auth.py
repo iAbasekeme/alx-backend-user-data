@@ -2,6 +2,8 @@
 """A class for managing the API authentication
 """
 from typing import List, TypeVar
+User = TypeVar('User')
+
 
 class Auth:
     """A class that performs a simple authentication
@@ -36,7 +38,7 @@ class Auth:
             return request.headers.get('Authorization', None)
         return None
 
-    def current_user(self, request=None) -> TypeVar('User'):
+    def current_user(self, request=None) -> User:
         """This method is a placeholder for
         future implementation of user retrieval
         based on the authorization header. For now,
