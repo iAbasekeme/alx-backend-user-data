@@ -42,6 +42,9 @@ def forbidden(error) -> str:
 
 @app.before_request
 def filter():
+    """ A method that handles filtering the
+    url before it's been accesssed
+    """
     paths = [
         '/api/v1/status/',
         '/api/v1/unauthorized/',
