@@ -46,6 +46,8 @@ def filter():
     """ A method that handles filtering the
     url before it's been accesssed
     """
+    if auth is None:
+        return
     paths = [
         '/api/v1/status/',
         '/api/v1/unauthorized/',
