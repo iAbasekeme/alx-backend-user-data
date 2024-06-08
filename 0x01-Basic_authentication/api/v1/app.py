@@ -46,20 +46,19 @@ def filter():
     """ A method that handles filtering the
     url before it's been accesssed
     """
-    if auth is None:
-        return
-    paths = [
-        '/api/v1/status/',
-        '/api/v1/unauthorized/',
-        '/api/v1/forbidden/'
-    ]
-    if auth.require_auth(request.path, paths):
-        auth_header = auth.authorization_header(request)
-        user = auth.current_user(request)
-        if auth_header is None:
-            abort(401)
-        if user is None:
-            abort(403)
+    if auth:
+        paths = [
+            '/api/v1/status/',
+            '/api/v1/unauthorized/',
+            '/api/v1/forbidden/'
+        ]
+        if auth.require_auth(request.path, paths):
+            auth_header = auth.authorization_header(request)
+            user = auth.current_user(request)
+            if auth_header is None:
+                abort(401)
+            if user is None:
+                abort(403)
 
 
 if __name__ == "__main__":
