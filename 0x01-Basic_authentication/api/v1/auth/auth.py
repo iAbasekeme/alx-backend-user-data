@@ -26,6 +26,7 @@ class Auth:
 
         if str == allowed and excluded in excluded_paths:
             return False
+        return False
 
     def authorization_header(self, request=None) -> str:
         """This method retrieves the authorization
