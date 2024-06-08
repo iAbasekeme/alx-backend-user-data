@@ -34,7 +34,7 @@ def unauthorized() -> int:
 
 
 @app_views.route('/forbidden/', strict_slashes=False)
-def forbidden()-> int:
+def forbidden() -> int:
     """A route that implements forbodden error
     """
     return abort(403)
