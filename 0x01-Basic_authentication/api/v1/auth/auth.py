@@ -15,18 +15,20 @@ class Auth:
         based on path and excluded paths. For now,
         it always returns False.
         """
-        # if path | excluded_paths is None:
-        #     return True
-        # if excluded_paths is []:
-        #     return True
-        # if path in excluded_paths:
-        #     return False
-        # allowed = "/api/v1/status" | "/api/v1/status/"
-        # excluded = "/api/v1/status/"
+        if path is None:
+            return True
+        if excluded_paths is None or len(excluded_paths) == 0:
+            return True
 
-        # if str == allowed and excluded in excluded_paths:
-        #     return False
-        return False
+        # Ensure path ends with a '/'
+        normalized_path = path if path.endswith('/') else path + '/'
+
+        # Check if the normalized path is in the excluded paths
+        for excluded_path in excluded_paths:
+            if normalized_path == excluded_path:
+                return False
+
+        return True
 
     def authorization_header(self, request=None) -> str:
         """This method retrieves the authorization
