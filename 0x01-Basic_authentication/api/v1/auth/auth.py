@@ -28,7 +28,8 @@ class Auth:
             return False
 
     def authorization_header(self, request=None) -> str:
-        """This method retrieves the authorization header from the Flask request object
+        """This method retrieves the authorization
+        header from the Flask request object
         if provided. Otherwise, it returns None.
         """
         if request:
