@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Basic route module for the API
+"""Basic route module for the implementations of autthentication API
 """
 from api.v1.auth.auth import Auth
 import base64
@@ -8,7 +8,7 @@ from models.user import User
 
 
 class BasicAuth(Auth):
-    """Basic authentication class
+    """Basic authentication class that inherits from the Auth class
     """
 
     def extract_base64_authorization_header(
@@ -33,7 +33,8 @@ class BasicAuth(Auth):
     def decode_base64_authorization_header(
             self,
             base64_authorization_header: str) -> str:
-        """A method that decodes a base64 algorithm
+        """A method that that returns the decoded value of a
+        Base64 string base64_authorization_header:
         """
         if base64_authorization_header is None:
             return None
@@ -52,8 +53,8 @@ class BasicAuth(Auth):
             self,
             decoded_base64_authorization_header: str
             ) -> (str, str):
-        """ A method returns the user
-        email and password from the Base64 decoded value.
+        """ A method returns the user email and password from
+        the Base64 decoded value.
         """
         if not isinstance(decoded_base64_authorization_header, str):
             return (None, None)
