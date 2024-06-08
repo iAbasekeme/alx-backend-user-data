@@ -15,17 +15,17 @@ class Auth:
         based on path and excluded paths. For now,
         it always returns False.
         """
-        if path | excluded_paths is None:
-            return True
-        if excluded_paths is []:
-            return True
-        if path in excluded_paths:
-            return False
-        allowed = "/api/v1/status" | "/api/v1/status/"
-        excluded = "/api/v1/status/"
+        # if path | excluded_paths is None:
+        #     return True
+        # if excluded_paths is []:
+        #     return True
+        # if path in excluded_paths:
+        #     return False
+        # allowed = "/api/v1/status" | "/api/v1/status/"
+        # excluded = "/api/v1/status/"
 
-        if str == allowed and excluded in excluded_paths:
-            return False
+        # if str == allowed and excluded in excluded_paths:
+        #     return False
         return False
 
     def authorization_header(self, request=None) -> str:
