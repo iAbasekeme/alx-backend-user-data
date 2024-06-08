@@ -14,6 +14,7 @@ class BasicAuth(Auth):
     def extract_base64_authorization_header(
             self,
             authorization_header: str) -> str:
+
         """ A method that returns the Base64 part of the Authorization
         header for a Basic Authentication
         """
@@ -33,6 +34,7 @@ class BasicAuth(Auth):
     def decode_base64_authorization_header(
             self,
             base64_authorization_header: str) -> str:
+
         """A method that that returns the decoded value of a
         Base64 string base64_authorization_header:
         """
@@ -53,6 +55,7 @@ class BasicAuth(Auth):
             self,
             decoded_base64_authorization_header: str
             ) -> (str, str):
+
         """ A method returns the user email and password from
         the Base64 decoded value.
         """
@@ -69,6 +72,7 @@ class BasicAuth(Auth):
             self,
             user_email: str,
             user_pwd: str) -> TypeVar('User'):
+
         """Retrieves a user based on the user's authentication credentials.
         """
         if user_email is None or not isinstance(user_email, str):
