@@ -15,7 +15,7 @@ class BasicAuth(Auth):
             self,
             authorization_header: str) -> str:
 
-        """ A method that returns the Base64 part of the Authorization
+        """A method that returns the Base64 part of the Authorization
         header for a Basic Authentication
         """
         if authorization_header is None:
@@ -56,7 +56,7 @@ class BasicAuth(Auth):
             decoded_base64_authorization_header: str
             ) -> (str, str):
 
-        """ A method returns the user email and password from
+        """A method returns the user email and password from
         the Base64 decoded value.
         """
         if not isinstance(decoded_base64_authorization_header, str):
