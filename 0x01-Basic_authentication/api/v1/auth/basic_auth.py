@@ -14,7 +14,7 @@ class BasicAuth(Auth):
     def extract_base64_authorization_header(
             self,
             authorization_header: str) -> str:
-        """returns the Base64 part of the Authorization
+        """ A method that returns the Base64 part of the Authorization
         header for a Basic Authentication
         """
         if authorization_header is None:
@@ -67,7 +67,7 @@ class BasicAuth(Auth):
     def user_object_from_credentials(
             self,
             user_email: str, user_pwd: str) -> TypeVar('User'):
-        """A method that returns the User instance
+        """ A method that returns the User instance
         based on his email and password.
         """
         if user_email is None:
