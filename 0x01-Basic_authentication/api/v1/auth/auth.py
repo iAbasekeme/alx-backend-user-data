@@ -36,7 +36,7 @@ class Auth:
         if provided. Otherwise, it returns None.
         """
         if request is not None:
-            auth = requests.headers.get('Authorization')
+            auth = requests.headers.get('Authorization', None)
         return auth
 
     def current_user(self, request=None) -> User:
