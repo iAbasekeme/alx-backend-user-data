@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """A class for managing the API authentication
 """
+from os import getenv
 from typing import List, TypeVar
 User = TypeVar('User')
-from os import getenv
 
 
 class Auth:
