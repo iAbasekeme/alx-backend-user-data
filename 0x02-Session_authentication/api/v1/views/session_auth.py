@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """A route module that implements session authentication
 """
+from os import getenv
 from api.v1.views import app_views
 from flask import jsonify, request
 from views import User
@@ -8,7 +9,8 @@ from views import User
 
 @app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
 def login():
-    """A route that handles login for a user.
+    """A route that handles login for a user and
+    creates a session for them
     """
     email = request.form.get('email')
     password = request.form.get('password')
@@ -24,6 +26,6 @@ def login():
         from api.v1.app import auth
         session_id = auth.create_session(getattr(user, id))
         res = jsonify(user.to_json())
-        res.set_cookie(os.getenv("SESSION_NAME"), session_id)
+        res.set_cookie(getenv("SESSION_NAME"), session_id)
         return res
     return jsonify({"error": "wrong password"})
