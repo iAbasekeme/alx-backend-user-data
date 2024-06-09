@@ -3,6 +3,7 @@
 """
 from typing import List, TypeVar
 User = TypeVar('User')
+import os
 
 
 class Auth:
@@ -45,3 +46,10 @@ class Auth:
         it always returns None.
         """
         return None
+
+    def session_cookie(self, request=None):
+        """A method that returns a cookie value from a request:
+        """
+        session_cookie_name = os.getenv('SESSION_NAME')
+        return request.cookies.get(session_cookie_name)
+
