@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""A route module that implements session authentication
+"""A module that implements session authentication for every user
+that wants to login
 """
 from os import getenv
 from api.v1.views import app_views
