@@ -4,7 +4,7 @@ that wants to login
 """
 from os import getenv
 from api.v1.views import app_views
-from flask import jsonify, request
+from flask import abort, jsonify, request
 from models.user import User
 from typing import Tuple
 
@@ -38,3 +38,15 @@ def login():
         else:
             return jsonify(error="wrong password"), 401
     return jsonify(error="no user found for this email"), 404
+
+@app_views.route('/auth_session/logout', methods=['DELETE'],
+                 strict_slashes=False)
+def logout():
+    """ DELETE /auth_session/logout
+    Return:
+      - Response
+    """
+    from api.v1.app import auth
+    if auth.destroy_session(request):
+        return jsonify({}), 200
+    abort(404)
