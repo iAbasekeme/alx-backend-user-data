@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""A module that handles session authentication implementations and holds 
-the class Session auth.
+"""A module that handles session authentication implementations
+and holds the class Session auth.
 """
 from .auth import Auth
 import uuid
