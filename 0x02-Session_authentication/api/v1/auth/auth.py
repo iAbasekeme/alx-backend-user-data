@@ -3,7 +3,7 @@
 """
 from typing import List, TypeVar
 User = TypeVar('User')
-import os
+from os import getenv
 
 
 class Auth:
@@ -50,5 +50,7 @@ class Auth:
     def session_cookie(self, request=None):
         """A method that returns a cookie value from a request:
         """
-        session_cookie_name = os.getenv('SESSION_NAME')
+        if request is None:
+            return None
+        session_cookie_name = getenv('SESSION_NAME')
         return request.cookies.get(session_cookie_name)
