@@ -6,11 +6,12 @@ from os import getenv
 from api.v1.views import app_views
 from flask import jsonify, request
 from views import User
+from typing import Tuple
 
 
 @app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
-def login():
-    """A route that handles login for a user and
+def login() -> Tuple[str, int]:
+    """A POST route that handles login for a user and
     creates a session for them
     """
     email = request.form.get('email')
@@ -29,4 +30,4 @@ def login():
         res = jsonify(user.to_json())
         res.set_cookie(getenv("SESSION_NAME"), session_id)
         return res
-    return jsonify({"error": "wrong password"})
+    return jsonify({"error": "wrong password"}), 401
