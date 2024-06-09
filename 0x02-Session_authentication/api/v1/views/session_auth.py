@@ -16,13 +16,14 @@ def login() -> Tuple[str, int]:
     """
     email = request.form.get('email')
     password = request.form.get('password')
-    if not email or email == '':
+    if not email:
         return jsonify({"error": "email missing"}), 400
-    if not password or password == '':
+    if not password:
         return jsonify({"error": "password missing"}), 400
-    user = User.search({'email': email})
-    if not user:
+    users = User.search({'email': email})
+    if not users:
         return jsonify({"error": "no user found for this email"}), 404
+    user = users[0]
     passw = user.is_valid_password(password)
     if passw:
         from api.v1.app import auth
