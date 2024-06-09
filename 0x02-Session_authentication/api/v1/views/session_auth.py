@@ -5,7 +5,7 @@ that wants to login
 from os import getenv
 from api.v1.views import app_views
 from flask import jsonify, request
-from views import User
+from models.user import User
 from typing import Tuple
 
 
