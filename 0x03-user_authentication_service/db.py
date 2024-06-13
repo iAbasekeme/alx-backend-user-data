@@ -44,11 +44,13 @@ class DB:
         """A method that finds a user base on a filyer
         """
         query = self._session.query(User)
-        for i in kwargs.keys():
-            if not hasattr(User, i):
+        for k, v in kwargs.items():
+            if not hasattr(User, k):
                 raise InvalidRequestError
-            query = query.filter(getattr(User, i) == kwargs[i])
-        user = query.first()
-        if user is None:
-            raise NoResultFound
+            query = query.filter(getattr(User, k) == v)
+        try:
+            user = query.one()
+        except NoResultFound:
+            raise NoResultFound()
+
         return user
