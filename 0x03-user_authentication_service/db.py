@@ -59,5 +59,6 @@ class DB:
         for key, value in kwargs.items():
             if hasattr(user, key):
                 setattr(user, key, value)
-            raise ValueError
+            else:
+                raise ValueError
         self.__session.commit()
