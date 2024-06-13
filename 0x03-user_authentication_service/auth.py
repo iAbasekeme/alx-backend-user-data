@@ -2,6 +2,7 @@
 """ A module that tackles authentication
 """
 import bcrypt
+from sqlalchemy.orm.exc import NoResultFound
 from db import DB
 from user import User
 
@@ -22,9 +23,12 @@ class Auth:
         self._db = DB()
 
     def register_user(self, email: str, password: str) -> User:
-        user = self._db.find_user_by(email=email)
-        if user:
-            raise ValueError('User ${email} already exists')
-        else:
+        """A method that registers a user and saves them on the db
+        """
+        try:
+            user = self._db.find_user_by(email=email)
+            if user:
+                raise ValueError(f"User {email} already exists")
+        except NoResultFound:
             hashed_password =  _hash_password(password)
             self._db.add_user(email, hashed_password)
