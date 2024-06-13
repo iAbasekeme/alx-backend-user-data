@@ -48,7 +48,7 @@ class DB:
             if not hasattr(User, i):
                 raise InvalidRequestError
             query = query.filter(getattr(User, i) == kwargs[i])
-        user = query.one()
+        user = query.first()
         if user is None:
             raise NoResultFound
         return user
