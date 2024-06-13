@@ -43,14 +43,10 @@ class DB:
     def find_user_by(self, **kwargs) -> User:
         """A method that finds a user base on a filyer
         """
-        query = self._session.query(User)
-        for k, v in kwargs.items():
-            if not hasattr(User, k):
-                raise InvalidRequestError
-            query = query.filter_by(getattr(User, k) == v)
         try:
-            user = query.one()
+            query = self._session.query(User).filter_by(**kwargs).one()
+        except InvalidRequestError:
+            raise InvalidRequestError('invalid request')
         except NoResultFound:
-            raise NoResultFound()
-
-        return user
+            raise NoResultFound('query not found')
+        return query
