@@ -4,10 +4,9 @@
 import bcrypt
 
 
-def _hash_password(password: str):
+def _hash_password(password: str) -> bytes:
     """A function that takes a password and hashes the password
     """
-    if password:
-        salt = bcrypt.gensalt()
-        hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
-        return hashed_password
+    salt = bcrypt.gensalt()
+    hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
+    return hashed_password
