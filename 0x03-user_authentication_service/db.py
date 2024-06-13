@@ -47,7 +47,7 @@ class DB:
         for k, v in kwargs.items():
             if not hasattr(User, k):
                 raise InvalidRequestError
-            query = query.filter(getattr(User, k) == v)
+            query = query.filter_by(getattr(User, k) == v)
         try:
             user = query.one()
         except NoResultFound:
