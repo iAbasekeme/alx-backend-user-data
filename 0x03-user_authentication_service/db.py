@@ -53,11 +53,11 @@ class DB:
         return query
 
     def update_user(self, user_id: int, **kwargs) -> None:
-        try:
-            user = self.find_user_by(id=user_id)
-            for key, value in kwargs.items():
-                if hasattr(user, key):
-                    setattr(user, key, value)
-            self.__session.commit()
-        except ValueError:
+        """A method that updates user data and saves it to the db
+        """
+        user = self.find_user_by(id=user_id)
+        for key, value in kwargs.items():
+            if hasattr(user, key):
+                setattr(user, key, value)
             raise ValueError
+        self.__session.commit()
