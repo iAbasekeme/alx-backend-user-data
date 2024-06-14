@@ -17,13 +17,13 @@ def start():
     return jsonify({"message": "Bienvenue"})
 
 @app.route('/users', methods=['POST'], strict_slashes=False)
-def register():
+def register() -> str:
     """A rouet that implements registering users and saving them.
     """
     email = request.form.get('email')
     password = request.form.get('password')
 
-    if email or password is None:
+    if email is None or password is None:
         return jsonify({"message": "Input your email and password"}), 400
     try:
         new_user = Auth.register_user(email, password)
