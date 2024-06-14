@@ -20,12 +20,10 @@ def start():
 def register() -> str:
     """A route that implements registering users and saving them.
     """
-    email = request.form.get('email')
-    password = request.form.get('password')
-
+    email, password = request.form.get("email"), request.form.get("password")
     try:
-        Auth.register_user(email, password)
-        return jsonify({"email": f"{email}", "message": "user created"})
+        AUTH.register_user(email, password)
+        return jsonify({"email": email, "message": "user created"})
     except ValueError:
         return jsonify({"message": "email already registered"}), 400
 
