@@ -18,7 +18,7 @@ def start():
 
 @app.route('/users', methods=['POST'], strict_slashes=False)
 def register() -> str:
-    """A rouet that implements registering users and saving them.
+    """A route that implements registering users and saving them.
     """
     email = request.form.get('email')
     password = request.form.get('password')
