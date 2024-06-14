@@ -59,7 +59,7 @@ class Auth:
 
     def create_session(self, email: str) -> str:
         """
-        create a new session for a give user
+        create a new session for a user that logs in
         """
         try:
             user = self._db.find_user_by(email=email)
