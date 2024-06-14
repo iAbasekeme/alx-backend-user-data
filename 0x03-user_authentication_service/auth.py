@@ -35,7 +35,7 @@ class Auth:
 
     def valid_login(self, email: str, password: str) -> bool:
         """A method that validates a
-        login credentials to log the user in
+        login credentials to log the user into the db
         """
         user = None
         try:
